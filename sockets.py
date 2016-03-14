@@ -85,8 +85,7 @@ class Client:
 def set_listener( entity, data ):
     ''' do something with the update ! '''
     msg = json.dumps({entity : data})
-    for client in clients:
-        client.put(msg)
+    send_all(msg)
 
 myWorld.add_set_listener( set_listener )
         
@@ -145,7 +144,7 @@ def flask_post_json():
 def update(entity):
     '''update the entities via this interface'''
     myWorld.set(entity, flask_post_json())
-    return json.dumps(myWorld.set(entity))
+    return json.dumps(myWorld.get(entity))
 
 @app.route("/world", methods=['POST','GET'])    
 def world():
