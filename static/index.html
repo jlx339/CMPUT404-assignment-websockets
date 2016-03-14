@@ -55,7 +55,9 @@ function drawCircle(context,entity) {
         fillStyle = entity["colour"];
         strokeStyle = fillStyle;
         arc(x, y, (entity["radius"])?entity["radius"]:50, 0, 2.0 * Math.PI, false);  
-        stroke();                                
+        stroke();
+        shadowBlur=20;
+        shadowColor="white";
     }
 }
 
@@ -242,9 +244,11 @@ mouse.mouseuppers.push(function(x,y,clicked,e) {
     addEntityWithoutName({'x':x,'y':y,'colour':'red'});
 });
 
+colorList = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF', '4B0082', '8F00FF' ]
 mouse.mousedraggers.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'green',
-                          'radius':10});
+    i = Math.floor(Math.random() * 7);
+    addEntityWithoutName({'x':x,'y':y,'colour':colorList[i],
+        'radius':10});
 });
 
 
